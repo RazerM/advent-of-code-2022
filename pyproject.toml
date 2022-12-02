@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "aoc2022"
+version = "1.0"
+description = "My Advent of Code 2022 solutions"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+	{ name = "Frazer McLean", email = "frazer@frazermclean.co.uk" },
+]
+classifiers = [
+	"License :: OSI Approved :: MIT License",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3 :: Only",
+	"Programming Language :: Python :: 3.11",
+]
+dependencies = [
+	"attrs",
+	"click>=8",
+	"httpx",
+	"python-dotenv",
+	"more-itertools"
+]
+
+[project.urls]
+repository = "https://github.com/RazerM/advent-of-code-2022"
+
+[project.scripts]
+aoc2022 = "aoc2022.__main__:cli"
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+no_implicit_reexport = true
+strict_equality = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_ignores = true
