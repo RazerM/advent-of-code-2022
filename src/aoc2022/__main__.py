@@ -6,6 +6,7 @@ from typing import IO
 
 import click
 import httpx
+import isort
 from dotenv import load_dotenv
 
 from ._registry import solvers
@@ -170,8 +171,6 @@ def prepare() -> None:
                 output.append(line)
                 if re.match(r"# autogenerate start", line):
                     in_autogenerate = True
-                    # This formatting is set up to match what isort will reformat
-                    # it as.
                     output.append("from . import (\n")
                     for day in range(1, last_available_day + 1):
                         output.append(f"    day{day:02d},\n")
@@ -179,7 +178,8 @@ def prepare() -> None:
 
             file.seek(0)
             file.truncate()
-            file.writelines(output)
+            config = isort.Config(settings_path=os.getcwd())
+            file.write(isort.code("".join(output), config=config))
 
 
 if __name__ == "__main__":

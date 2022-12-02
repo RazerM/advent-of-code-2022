@@ -22,6 +22,7 @@ dependencies = [
 	"attrs",
 	"click>=8",
 	"httpx",
+	"isort",
 	"python-dotenv",
 	"more-itertools"
 ]
