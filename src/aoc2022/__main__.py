@@ -174,7 +174,7 @@ def prepare() -> None:
                     output.append("from . import (\n")
                     for day in range(1, last_available_day + 1):
                         output.append(f"    day{day:02d},\n")
-                    output.append(f")\n\n")
+                    output.append(")\n\n")
 
             file.seek(0)
             file.truncate()
