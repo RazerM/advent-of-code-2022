@@ -147,13 +147,17 @@ def prepare() -> None:
                     pass
 
             input_file = input_dir / f"{day:02d}.txt"
-            try:
-                with open(input_file, "x") as file:
-                    response = client.get(INPUT_URL.format(day=day))
-                    response.raise_for_status()
-                    file.write(response.text)
-            except FileExistsError:
-                pass
+            response = client.get(INPUT_URL.format(day=day))
+            if response.status_code == 200:
+                try:
+                    with open(input_file, "x") as file:
+                        file.write(response.text)
+                except FileExistsError:
+                    pass
+            elif response.status_code == 404:
+                print("Input is not available yet.")
+            else:
+                response.raise_for_status()
 
     if create_modules:
         with open(package_dir / "__init__.py", "r+") as file:
