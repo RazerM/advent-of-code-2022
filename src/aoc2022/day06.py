@@ -3,10 +3,12 @@ from typing import IO
 from ._registry import register
 
 
-def find_marker(stream: str, n: int) -> int:
+def find_marker(stream: str, n: int) -> int | None:
     for i in range(len(stream)):
         if len(set(stream[max(0, i - n) : i])) == n:
             return i
+
+    return None
 
 
 @register(day=6)
